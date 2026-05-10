@@ -11,10 +11,19 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const frontendDir = process.env.FRONTEND_DIR
         ? (0, path_1.resolve)(process.cwd(), process.env.FRONTEND_DIR)
-        : (0, path_1.join)(__dirname, '../../../../frontend/dist');
+        : (0, path_1.join)(__dirname, '../../../frontend');
     const hasFrontend = (0, fs_1.existsSync)(frontendDir);
     if (hasFrontend) {
         app.useStaticAssets(frontendDir);
+        // SPA fallback: serve index.html for all non-API, non-asset GET requests
+        // Must be registered as middleware (before listen) so it runs in the Express
+        // middleware chain, not as an Express route after NestJS exception pipeline
+        app.getHttpAdapter().getInstance().use((req, res, next) => {
+            if (req.method !== 'GET') return next();
+            if (req.path.startsWith('/api')) return next();
+            if ((0, path_1.extname)(req.path)) return next();
+            res.sendFile((0, path_1.join)(frontendDir, 'index.html'));
+        });
     }
     app.setGlobalPrefix('api');
     app.enableCors({
@@ -36,9 +45,6 @@ async function bootstrap() {
     const port = process.env.PORT || 3000;
     await app.listen(port);
     if (hasFrontend) {
-        app.getHttpAdapter().getInstance().get('*', (_req, res) => {
-            res.sendFile((0, path_1.join)(frontendDir, 'index.html'));
-        });
         console.log(`🚀 HiCAD running on http://localhost:${port}`);
     }
     else {

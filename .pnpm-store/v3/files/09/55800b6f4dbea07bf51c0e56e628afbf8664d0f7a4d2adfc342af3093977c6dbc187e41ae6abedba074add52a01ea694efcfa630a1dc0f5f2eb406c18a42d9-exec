@@ -1,0 +1,17 @@
+#!/bin/sh
+basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+
+case `uname` in
+    *CYGWIN*) basedir=`cygpath -w "$basedir"`;;
+esac
+
+if [ -z "$NODE_PATH" ]; then
+  export NODE_PATH="/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/opencollective/bin/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/opencollective/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/node_modules"
+else
+  export NODE_PATH="/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/opencollective/bin/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/opencollective/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/@nuxtjs+opencollective@0.3.2/node_modules:/Users/xuxiaoxi/Desktop/pay-wx/github/HiCAD/node_modules/.pnpm/node_modules:$NODE_PATH"
+fi
+if [ -x "$basedir/node" ]; then
+  exec "$basedir/node"  "$basedir/../../../../../../@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/opencollective/bin/opencollective.js" "$@"
+else
+  exec node  "$basedir/../../../../../../@nuxtjs+opencollective@0.3.2/node_modules/@nuxtjs/opencollective/bin/opencollective.js" "$@"
+fi
