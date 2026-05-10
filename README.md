@@ -16,7 +16,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg?logo=typescript)](https://www.typescriptlang.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/your-username/hicad/pulls)
 
-[🚀 快速开始](#-快速开始) · [✨ 功能特性](#-功能特性) · [🤖 AI 配置](#-ai-适配器配置) · [🛠️ 技术栈](#️-技术栈) · [🤝 参与贡献](#-参与贡献)
+[🚀 demo](https://hicad.mvtable.com) · [✨ 功能特性](#-功能特性) · [🤖 AI 配置](#-ai-适配器配置) · [🛠️ 技术栈](#️-技术栈) · [🤝 参与贡献](#-参与贡献)
 
 </div>
 
@@ -55,31 +55,31 @@ npm install -g pnpm
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/your-username/hicad.git
-cd hicad
+git clone git@github.com:MrXujiang/HiCAD.git
+cd HiCAD
 
 # 2. 配置环境变量（填入你的 AI API Key）
-cp backend/.env.example backend/.env
-# ↑ 编辑 backend/.env，填写你的 DEEPSEEK_API_KEY
+vi .env
+# ↑ 编辑.env，填写你的 DEEPSEEK_API_KEY
 
 # 3. 安装依赖 & 启动
-pnpm install && pnpm dev
+pnpm install && pnpm start
 ```
 
 🎉 启动成功后打开浏览器访问：
 
 | 服务 | 地址 |
 |------|------|
-| 🌐 前端页面 | http://localhost:5173 |
+| 🌐 前端页面 | http://localhost:3000 |
 | 🔌 后端 API | http://localhost:3000/api |
 
-> **💡 获取注册激活码**：关注微信公众号 **「趣谈AI」**，回复 **「HiCAD」** 即可免费获得激活码，完成注册后即可使用 AI 建模功能。
+> **💡 获取注册激活码**：关注微信公众号 **「趣谈AI」**，回复 **「HiCAD」** 即可免费获得永久激活码，完成注册后即可使用 AI 建模功能。
 
 ---
 
 ## ⚙️ 环境变量说明
 
-复制 `backend/.env.example` 为 `backend/.env` 并按需填写：
+复制 `.env.example` 为 `.env` 并按需填写：
 
 ```env
 # 服务端口
@@ -99,9 +99,6 @@ QWEN_API_KEY=your_qwen_api_key_here
 
 # 数据存储目录（默认 ./data，无需修改）
 DATA_DIR=./data
-
-# 前端跨域地址
-CORS_ORIGIN=http://localhost:5173
 ```
 
 ---
@@ -114,7 +111,7 @@ CORS_ORIGIN=http://localhost:5173
 | `openai` | GPT-4o | 高质量，价格较高 | [platform.openai.com](https://platform.openai.com/) |
 | `qwen` | Qwen-Max | 国内访问稳定 | [dashscope.aliyuncs.com](https://dashscope.aliyuncs.com/) |
 
-修改 `backend/.env` 中的 `AI_ADAPTER` 字段即可切换，重启服务后生效。
+修改 `.env` 中的 `AI_ADAPTER` 字段即可切换，重启服务后生效。
 
 ---
 
@@ -131,7 +128,6 @@ CORS_ORIGIN=http://localhost:5173
 | [Three.js](https://threejs.org/) | 0.160+ | WebGL 3D 渲染 |
 | [Monaco Editor](https://microsoft.github.io/monaco-editor/) | 0.45+ | 代码编辑器（VS Code 内核） |
 | [Tailwind CSS](https://tailwindcss.com/) | 3.x | 原子化 CSS 样式 |
-| JSCAD | - | CSG 3D 几何建模引擎（WebWorker） |
 
 </details>
 
@@ -220,7 +216,7 @@ server {
 
     # 前端静态文件
     location / {
-        root /path/to/hicad/frontend/dist;
+        root /path/to/hicad/frontend;
         try_files $uri $uri/ /index.html;
     }
 
