@@ -4,6 +4,9 @@
 
 **AI 驱动的参数化 3D CAD 建模平台**
 
+![](https://next.jitword.com/uploads/demo_19e108a1958.png)
+![](demo.png)
+
 *用自然语言描述你的想法，秒级生成可 3D 打印的参数化模型*
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
