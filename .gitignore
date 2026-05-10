@@ -1,0 +1,10 @@
+node_modules/
+.env
+.DS_Store
+*.log
+data/users.json
+data/models.json
+data/sessions.json
+data/orders.json
+data/feedbacks.json
+data/files/
