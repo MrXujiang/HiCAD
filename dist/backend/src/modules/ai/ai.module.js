@@ -13,6 +13,7 @@ const ai_service_1 = require("./ai.service");
 const ai_controller_1 = require("./ai.controller");
 const deepseek_adapter_1 = require("./adapters/deepseek.adapter");
 const openai_adapter_1 = require("./adapters/openai.adapter");
+const qwen_adapter_1 = require("./adapters/qwen.adapter");
 const user_module_1 = require("../user/user.module");
 const database_module_1 = require("../../database/database.module");
 let AiModule = class AiModule {
@@ -30,6 +31,9 @@ exports.AiModule = AiModule = __decorate([
                     const adapter = config.get('AI_ADAPTER', 'deepseek');
                     if (adapter === 'openai') {
                         return new openai_adapter_1.OpenAiAdapter();
+                    }
+                    if (adapter === 'qwen') {
+                        return new qwen_adapter_1.QwenAdapter();
                     }
                     return new deepseek_adapter_1.DeepSeekAdapter();
                 },
