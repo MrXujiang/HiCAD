@@ -21,6 +21,7 @@
 </div>
 
 💡：在线体验：https://hicad.mvtable.com
+
 💌：AI实战学习手册：https://aibook.mvtable.com
 
 ---
